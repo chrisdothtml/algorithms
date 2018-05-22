@@ -1,3 +1,5 @@
+// https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode
+
 function A*(start, goal)
     // The set of nodes already evaluated
     closedSet := {}
