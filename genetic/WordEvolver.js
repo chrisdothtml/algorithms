@@ -66,7 +66,7 @@ function generatePopulation (size, length) {
 export default class WordEvolver {
   constructor (options) {
     const { goal, populationSize, mutationProbability } = Object.assign({
-      goal: 'Darwin',
+      goal: 'Charles Darwin',
       populationSize: 150,
       mutationProbability: .1
     }, options)

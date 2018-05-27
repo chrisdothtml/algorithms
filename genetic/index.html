@@ -7,24 +7,45 @@
   <title>Word Evolver algorithm</title>
 </head>
 <body>
+  <div>
+    Goal: <span id="goal"></span><br/><br />
+    Fittest member: <span id="fittest-member"></span><br/>
+    Highest fitness: <span id="highest-fitness"></span><br />
+    Generations: <span id="generations"></span>
+  </div>
+
   <script type="module">
     import WordEvolver from './WordEvolver.js'
+    import { RAFLoop } from '../_common/utils.js'
+
     window.WordEvolver = WordEvolver
+    const ELEMENTS = {
+      fittestMember: document.getElementById('fittest-member'),
+      generations: document.getElementById('generations'),
+      goal: document.getElementById('goal'),
+      highestFitness: document.getElementById('highest-fitness')
+    }
 
-    // paste this in the console to experiment with different settings
-    {
-      const evolver = new WordEvolver({
-        goal: 'Darwin',
-        populationSize: 150,
-        mutationProbability: .1
-      })
+    const evolver = new WordEvolver({
+      goal: 'Charles Darwin',
+      populationSize: 150,
+      mutationProbability: .1
+    })
 
-      while (!evolver.finished) {
+    ELEMENTS.goal.innerText = evolver.goal
+    RAFLoop(() => {
+      const fittestMember = evolver.fittestMember
+
+      ELEMENTS.fittestMember.innerText = fittestMember.member
+      ELEMENTS.generations.innerText = evolver.generations
+      ELEMENTS.highestFitness.innerText = fittestMember.fitness
+
+      if (evolver.finished) {
+        return 'stop'
+      } else {
         evolver.breed()
       }
-
-      console.log(`Evolution complete! It took ${evolver.generations} generations to evolve into "${evolver.goal}".`)
-    }
+    })
   </script>
 </body>
 </html>
