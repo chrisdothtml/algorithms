@@ -104,7 +104,7 @@ export default class WordEvolver {
       const fitness = calculateFitness(this.goal, member)
 
       if (fitness) {
-        const additions = fitness / maxFitness * 100
+        const additions = Math.pow(fitness / maxFitness * 10, 3)
         let i
 
         for (i = 0; i < additions; i++) {
