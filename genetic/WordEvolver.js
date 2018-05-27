@@ -15,13 +15,18 @@ function randLetter () {
 }
 
 function calculateFitness (goal, subject) {
-  let result = 0
+  const sequenceWeight = goal.length
+  let extraWeight = 0
+  let lastIndexMatched = false
+  let result = goal.split('').filter((_, i) => {
+    const matches = subject[i] === goal[i]
 
-  result += goal.split('').filter((_, i) => {
-    return subject[i] === goal[i]
+    if (matches && lastIndexMatched) extraWeight += sequenceWeight
+    lastIndexMatched = matches
+    return matches
   }).length
 
-  return result
+  return result + extraWeight
 }
 
 function mutate (subject, probability) {
