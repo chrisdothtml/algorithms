@@ -71,7 +71,7 @@ function generatePopulation (size, length) {
 export default class WordEvolver {
   constructor (options) {
     const { goal, populationSize, mutationProbability } = Object.assign({
-      goal: 'FooBar',
+      goal: 'Darwin',
       populationSize: 150,
       mutationProbability: .1
     }, options)
@@ -137,9 +137,6 @@ export default class WordEvolver {
 
       if (!this.finished && child === this.goal) {
         this.finished = true
-        console.log(
-          `Evolution complete! It took ${this.generations} generations and ${((this.generations - 1) * this.populationSize) + (i + 1)} children to evolve into "${this.goal}".`
-        )
       }
     }
   }

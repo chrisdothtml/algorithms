@@ -14,12 +14,16 @@
     // paste this in the console to experiment with different settings
     {
       const evolver = new WordEvolver({
-        goal: 'Darwin'
+        goal: 'Darwin',
+        populationSize: 150,
+        mutationProbability: .1
       })
 
       while (!evolver.finished) {
         evolver.breed()
       }
+
+      console.log(`Evolution complete! It took ${evolver.generations} generations to evolve into "${evolver.goal}".`)
     }
   </script>
 </body>
