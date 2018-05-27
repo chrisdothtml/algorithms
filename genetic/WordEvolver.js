@@ -29,20 +29,10 @@ function mutate (subject, probability) {
     .split('')
     .map(letter => {
       if (Math.random() < probability) {
-        if (randBool()) {
-          // replace with random letter
-          letter = randLetter()
-        } else {
-          // convert to upper/lower case
-          if (letter === letter.toUpperCase()) {
-            letter = letter.toLowerCase()
-          } else {
-            letter = letter.toUpperCase()
-          }
-        }
+        return randLetter()
+      } else {
+        return letter
       }
-
-      return letter
     })
     .join('')
 }
